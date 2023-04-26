@@ -6,11 +6,13 @@
  */
 
 import React, {useState} from 'react';
+import {Alert} from 'react-native';
 import MainContainer from './src/components/Containers/MainContainer';
 import BigText from './src/components/Texts/BigText';
 import RegularText from './src/components/Texts/RegularText';
 import SmallText from './src/components/Texts/SmallText';
 import StyledTextInput from './src/components/Inputs/StyledTextInput';
+import RegularButton from './src/components/Buttons/RegularButton';
 function App(): JSX.Element {
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
@@ -47,6 +49,12 @@ function App(): JSX.Element {
         isPassword={true}
         style={{marginBottom: 20}}
       />
+      <RegularButton
+        onPress={() => {
+          Alert.alert('you pressed me');
+        }}>
+        Press me
+      </RegularButton>
     </MainContainer>
   );
 }
