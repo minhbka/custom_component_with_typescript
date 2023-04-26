@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import React, {useState, FunctionComponent} from 'react';
 import styled from 'styled-components/native';
 import {colors} from '../colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -37,13 +37,30 @@ const StyledTextInput: FunctionComponent<InputProps> = ({
   label,
   ...props
 }) => {
+  const [inputBackgroundColor, setInputBackgroundColor] = useState(primary);
+  const customOnFocus = () => {
+    props?.onFocus;
+    setInputBackgroundColor(secondary);
+  };
+
+  const customOnBlur = () => {
+    props?.onBlur;
+    setInputBackgroundColor(primary);
+  };
+
   return (
     <InputWrapper>
       <LeftIcon>
-        <Icon name="email-variant" size={30} color={accent} />
+        <Icon name={icon} size={30} color={accent} />
       </LeftIcon>
       <SmallText>{label}</SmallText>
-      <InputField {...props} placeholderTextColor={gray} />
+      <InputField
+        {...props}
+        placeholderTextColor={gray}
+        onFocus={customOnFocus}
+        onBlur={customOnBlur}
+        style={[{backgroundColor: inputBackgroundColor}, props.style]}
+      />
     </InputWrapper>
   );
 };

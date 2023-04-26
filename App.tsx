@@ -13,6 +13,7 @@ import SmallText from './src/components/Texts/SmallText';
 import StyledTextInput from './src/components/Inputs/StyledTextInput';
 function App(): JSX.Element {
   const [email, setEmail] = useState('');
+  const [fullName, setFullName] = useState('');
   return (
     <MainContainer>
       <BigText>Yo! Big</BigText>
@@ -25,6 +26,14 @@ function App(): JSX.Element {
         onChangeText={setEmail}
         placeholder="email@address.com"
         keyboardType="email-address"
+        style={{marginBottom: 20}}
+      />
+      <StyledTextInput
+        label="Full Name"
+        icon="account"
+        value={fullName}
+        onChangeText={setFullName}
+        placeholder="홍길동"
         style={{marginBottom: 20}}
       />
     </MainContainer>
