@@ -5,10 +5,29 @@
  * @format
  */
 
-import React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
 import MainContainer from './src/components/Containers/MainContainer';
+import BigText from './src/components/Texts/BigText';
+import RegularText from './src/components/Texts/RegularText';
+import SmallText from './src/components/Texts/SmallText';
+import StyledTextInput from './src/components/Inputs/StyledTextInput';
 function App(): JSX.Element {
-  return <MainContainer></MainContainer>;
+  const [email, setEmail] = useState('');
+  return (
+    <MainContainer>
+      <BigText>Yo! Big</BigText>
+      <RegularText>Yo! Regular Text here</RegularText>
+      <SmallText style={{marginBottom: 20}}>SmallText</SmallText>
+      <StyledTextInput
+        label="Email Address"
+        icon="email-variant"
+        value={email}
+        onChangeText={setEmail}
+        placeholder="email@address.com"
+        keyboardType="email-address"
+        style={{marginBottom: 20}}
+      />
+    </MainContainer>
+  );
 }
 export default App;
