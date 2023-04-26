@@ -14,6 +14,7 @@ import StyledTextInput from './src/components/Inputs/StyledTextInput';
 function App(): JSX.Element {
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <MainContainer>
       <BigText>Yo! Big</BigText>
@@ -34,6 +35,16 @@ function App(): JSX.Element {
         value={fullName}
         onChangeText={setFullName}
         placeholder="홍길동"
+        style={{marginBottom: 20}}
+      />
+
+      <StyledTextInput
+        label="Password"
+        icon="lock-open"
+        value={password}
+        onChangeText={setPassword}
+        placeholder="********"
+        isPassword={true}
         style={{marginBottom: 20}}
       />
     </MainContainer>

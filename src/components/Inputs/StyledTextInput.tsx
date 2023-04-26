@@ -18,6 +18,12 @@ const LeftIcon = styled.View`
   border-color: ${secondary};
   padding-right: 10px;
 `;
+const RightIcon = styled.TouchableOpacity`
+  position: absolute;
+  top: 35px;
+  right: 15px;
+  z-index: 1;
+`;
 const InputField = styled.TextInput`
   background-color: ${primary};
   height: 60px;
@@ -35,9 +41,11 @@ const InputField = styled.TextInput`
 const StyledTextInput: FunctionComponent<InputProps> = ({
   icon,
   label,
+  isPassword,
   ...props
 }) => {
   const [inputBackgroundColor, setInputBackgroundColor] = useState(primary);
+  const [hidePassword, setHidePassword] = useState(true);
   const customOnFocus = () => {
     props?.onFocus;
     setInputBackgroundColor(secondary);
@@ -59,8 +67,21 @@ const StyledTextInput: FunctionComponent<InputProps> = ({
         placeholderTextColor={gray}
         onFocus={customOnFocus}
         onBlur={customOnBlur}
+        secureTextEntry={isPassword && hidePassword}
         style={[{backgroundColor: inputBackgroundColor}, props.style]}
       />
+      {isPassword && (
+        <RightIcon
+          onPress={() => {
+            setHidePassword(!hidePassword);
+          }}>
+          <Icon
+            name={hidePassword ? 'eye-off' : 'eye'}
+            size={30}
+            color={black}
+          />
+        </RightIcon>
+      )}
     </InputWrapper>
   );
 };
